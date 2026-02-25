@@ -1,26 +1,129 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #05070b;
+  --foreground: #e6f0ff;
+  --panel: #070c14;
+  --panel-2: #0a1220;
+  --border: color-mix(in oklab, #94a3b8 16%, transparent);
+  --muted: #9aa9c3;
+  --electric: #00d4ff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-electric: var(--electric);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  min-height: 100%;
+  background:
+    radial-gradient(
+      1200px 700px at 10% 10%,
+      color-mix(in oklab, var(--electric) 14%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 600px at 90% 20%,
+      color-mix(in oklab, #64748b 18%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      900px 700px at 50% 100%,
+      color-mix(in oklab, #0ea5e9 10%, transparent),
+      transparent 62%
+    ),
+    var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-orbitron), var(--font-geist-sans), ui-sans-serif,
+      system-ui, sans-serif;
+  }
+
+  .system-grid {
+    background-image:
+      linear-gradient(
+        to right,
+        color-mix(in oklab, var(--electric) 8%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in oklab, var(--electric) 6%, transparent) 1px,
+        transparent 1px
+      );
+    background-size: 72px 72px;
+    background-position: center;
+  }
+
+  .panel {
+    background:
+      radial-gradient(
+        900px 250px at 15% 0%,
+        color-mix(in oklab, var(--electric) 10%, transparent),
+        transparent 60%
+      ),
+      linear-gradient(
+        to bottom right,
+        color-mix(in oklab, var(--panel-2) 86%, transparent),
+        color-mix(in oklab, var(--panel) 96%, transparent)
+      );
+    border: 1px solid var(--border);
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--electric) 10%, transparent),
+      0 18px 55px rgba(0, 0, 0, 0.55);
+  }
+
+  .glow-ring {
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--electric) 28%, transparent),
+      0 0 24px color-mix(in oklab, var(--electric) 24%, transparent);
+  }
+
+  .text-glow {
+    text-shadow:
+      0 0 18px color-mix(in oklab, var(--electric) 32%, transparent),
+      0 0 38px color-mix(in oklab, var(--electric) 18%, transparent);
+  }
+
+  .scanlines {
+    position: relative;
+  }
+  .scanlines::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.035),
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px,
+      transparent 6px
+    );
+    mix-blend-mode: overlay;
+    opacity: 0.25;
+    mask-image: radial-gradient(circle at 50% 20%, black 45%, transparent 75%);
+  }
+
+  .focus-electric:focus-visible {
+    outline: 2px solid color-mix(in oklab, var(--electric) 70%, white 0%);
+    outline-offset: 3px;
+  }
 }
