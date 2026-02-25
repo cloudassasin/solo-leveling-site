@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { CharacterCard } from "@/components/CharacterCard";
+import { CinematicGallery } from "@/components/CinematicGallery";
 import { Header } from "@/components/Header";
 import { Section } from "@/components/Section";
 import { ShadowCard } from "@/components/ShadowCard";
@@ -6,7 +8,18 @@ import { characters, shadows } from "@/lib/soloData";
 
 export default function Home() {
   return (
-    <div id="top" className="min-h-screen">
+    <div id="top" className="relative min-h-screen overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 -z-20">
+        <Image
+          src="/solo-hero-forest.png"
+          alt="Sung Jinwoo walking through a storm of mana and shadows."
+          fill
+          priority
+          className="object-cover opacity-55 mix-blend-screen"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/94 to-background" />
+      </div>
       <a
         href="#content"
         className="focus-electric sr-only absolute left-4 top-4 z-[60] rounded-md bg-panel px-4 py-2 text-sm text-foreground not-sr-only"
@@ -205,11 +218,40 @@ export default function Home() {
           eyebrow="SHADOW ARMY"
           title="Bind. Extract. Command."
         >
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {shadows.map((s) => (
-              <ShadowCard key={s.name} shadow={s} />
-            ))}
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-[2fr,1.2fr]">
+            <div className="grid gap-5 sm:grid-cols-2">
+              {shadows.map((s) => (
+                <ShadowCard key={s.name} shadow={s} />
+              ))}
+            </div>
+            <div className="relative mt-2 hidden overflow-hidden rounded-3xl border border-border bg-background/60 sm:block">
+              <Image
+                src="/solo-hero-army.png"
+                alt="Sung Jinwoo standing before his full Shadow Army."
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 380px, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/10 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-5">
+                <p className="font-display text-xs tracking-[0.25em] text-muted">
+                  VISUAL FEED
+                </p>
+                <p className="mt-2 text-sm text-foreground">
+                  Recorded instance: Shadow Army deployment. Command authority:
+                  <span className="ml-1 text-electric">Player Sung Jinwoo</span>.
+                </p>
+              </div>
+            </div>
           </div>
+        </Section>
+
+        <Section
+          id="gallery"
+          eyebrow="VISUAL ARCHIVE"
+          title="Moments pulled from the shadows"
+        >
+          <CinematicGallery />
         </Section>
 
         <footer className="border-t border-border">
