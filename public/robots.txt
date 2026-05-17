@@ -1,0 +1,29 @@
+# robots.txt for https://solo-leveling-site-six.vercel.app/
+# Tells search engine crawlers which pages they may or may not access.
+# Reference: https://developers.google.com/search/docs/crawling-indexing/robots/intro
+
+# Default rules: apply to every crawler (Google, Bing, DuckDuckGo, etc.)
+User-agent: *
+Allow: /
+
+# Block private, sensitive, or non-public sections
+Disallow: /admin
+Disallow: /admin/
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /temp/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /draft/
+Disallow: /*?*preview=
+Disallow: /*.json$
+
+# Allow Google's image and asset crawlers full access (helps image SEO)
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+# Sitemap location (must be an absolute URL)
+Sitemap: https://solo-leveling-site-six.vercel.app/sitemap.xml

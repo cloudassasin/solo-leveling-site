@@ -29,6 +29,9 @@ export const metadata: Metadata = {
       "Enter a dark, electric-blue interface inspired by Solo Leveling: story, characters, and the Shadow Army.",
     type: "website",
   },
+  verification: {
+    google: "SujISOMmF2OL4IYvNzJZ3jiq79cTcyyglJDYS1jM4cY",
+  },
 };
 
 export default function RootLayout({
